@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
-const SLIDE_INTERVAL_MS = 100;
+const SLIDE_INTERVAL_MS = 15000;
 const SEED_DELAY_MS = 2000;
 const INSTRUCTION_DELAY_MS = 5000;
 
@@ -80,7 +80,7 @@ export default function ExperimentDisplayComponent({
     if (!isStarted || !currentExperimentId || showInstruction) return;
 
     const wordList = words[currentExperimentId] || [];
-    const isLastWord = wordIndex >= wordList.length - 3;
+    const isLastWord = wordIndex >= wordList.length - 2;
 
     const timer = setTimeout(() => {
       if (!isLastWord) {
@@ -142,7 +142,7 @@ export default function ExperimentDisplayComponent({
         </div>
       </div>
     );
-  }
+  } 
 
   // 슬라이드 화면
   return (
@@ -163,11 +163,11 @@ export default function ExperimentDisplayComponent({
           </>
         ) : (
           <>
-            <div className="absolute left-1/4 transform -translate-x-1/2 text-6xl text-gray-500">
-              {words[currentExperimentId]?.[wordIndex + 1] ?? ""}
+            <div className="absolute left-1/5 transform -translate-x-1/2 text-6xl text-gray-500">
+            {words[currentExperimentId]?.[wordIndex] ?? ""}
             </div>
-            <div className="absolute right-1/4 transform translate-x-1/2 text-8xl font-bold text-white">
-              {words[currentExperimentId]?.[wordIndex + 2] ?? ""}
+            <div className="absolute right-1/5 transform translate-x-1/2 text-8xl font-bold text-white">
+            {words[currentExperimentId]?.[wordIndex + 1] ?? ""}
             </div>
           </>
         )}
